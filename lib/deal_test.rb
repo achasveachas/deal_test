@@ -1,5 +1,2 @@
-require "deal_test/version"
-
-module DealTest
-  # Your code goes here...
-end
+require_relative "./deal_test/version"
+require_relative "./deal_test/cli.rb"
