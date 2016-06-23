@@ -6,23 +6,23 @@ class DealTest::CLI
   end
   def list_deals
     puts "Today's deals:"
-    puts <<-DOC.gsub /^\s*/, ""
-      1. PCH Digital Pulse Massager - $27 - Available
-      2. Lenovo Think Pad - $199.00 - Available
-    DOC
+    deals = DealTest::Deal.today
+    @deals = []
+    deals.each.with_index(1) do |deal, i|
+      @deals << "#{i}, #{deal.name} - #{deal.price} - #{deal.available}"
+    end
+    puts @deals
   end
   def menu
     input = nil
     while input != "exit"
       puts "Enter the deal number you want to learn more about or type list or exit:"
       input = gets.strip.downcase
-      case input
-      when "1"
-        puts "More info on deal 1"
-      when "2"
-        puts "More info on deal 2"
-      when "list"
+      if input.to_i > 0
+        puts @deals[input.to_i - 1]
+      elsif input == "list"
         list_deals
+      elsif input == "exit"
       else
         puts "Please clarify"
       end

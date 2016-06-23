@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
-require "./lib/deal_test"
+require "bundler/setup"
+require "deal_test"
 
 DealTest::CLI.new.call
